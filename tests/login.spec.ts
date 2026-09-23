@@ -1,5 +1,6 @@
 import {test, expect} from '@playwright/test';
 import { LoginPage } from '../src/pages/LoginPage';
+import { Dashboard } from '../src/pages/Dashborad';
 
 // test scenarion 1: Login with valid credentails
 test("Successful login with valid credentials", async({page})=>{
@@ -22,7 +23,7 @@ test("Login with invalid credentials", async({page})=>{
    
 })
 
-// test scenarion 3: Login with empty field
+// test scenario 3: Login with empty field
 test("Login with empty field", async({page})=>{
     const emptyLoginField = new LoginPage(page); 
 
@@ -31,3 +32,18 @@ test("Login with empty field", async({page})=>{
     await expect(page.getByText('Required').first()).toBeVisible({ timeout: 15000 });
 })
 
+
+// test scenario 4: logout redirects to the login page
+
+test("logout redirects to the login page", async({page})=>{
+
+    const loginPage = new LoginPage(page);
+    const dashboardpage = new Dashboard(page);
+    await loginPage.goto();
+    await loginPage.login('Admin', 'admin123');
+    await dashboardpage.logout();
+
+    await expect(page).toHaveURL(/login/, {timeout: 15000});
+    
+
+});
