@@ -1,11 +1,12 @@
 import { test, expect } from '@playwright/test';
 
 
+test('Get started link naviagest us to docs', async({page})=> {
 
-test('Google homepage has correct title', async({page})=>{
+  await page.goto('https://playwright.dev/');
+
+  await page.getByRole('link', {name: 'Get Started' }).click()
+
+  await expect(page).toHaveURL(/.*intro/)
   
-  await page.goto('https://google.com');
-
-  await expect(page).toHaveTitle(/Google/);
-
-});
+})
