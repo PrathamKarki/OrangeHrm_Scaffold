@@ -1,4 +1,4 @@
-import {test as base, Page} from '@playwright/test';
+import {test as base, Page, expect} from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { testData } from '../utils/testData';
 export { expect } from '@playwright/test';
@@ -12,6 +12,7 @@ export const test = base.extend<MyFixtures>({
         const loginPage = new LoginPage(page);
         await loginPage.goto();
         await loginPage.login(testData.validLogin.username, testData.validLogin.password);
+        await expect(page).toHaveURL(/dashboard/, { timeout: 15000 });
 
         await use(page)
     }
