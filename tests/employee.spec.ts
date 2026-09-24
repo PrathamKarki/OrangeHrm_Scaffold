@@ -1,6 +1,7 @@
 import {test, expect} from '@playwright/test';
 import { EmployeePage } from '../src/pages/EmployeePage';
 import { LoginPage } from '../src/pages/LoginPage';
+import { testData } from '../src/utils/testData';
 
 // test scenarion: Employe List page loads successfully 
 
@@ -9,7 +10,7 @@ test("Employee List page loads successfully", async({page})=>{
     const employeePage = new EmployeePage(page);
 
     await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+    await loginPage.login(testData.validLogin.username, testData.validLogin.password);
     await employeePage.goToEmployeeList();
     await expect(page).toHaveURL(/viewEmployeeList/)
 })
@@ -20,10 +21,10 @@ test("Employee List page loads successfully", async({page})=>{
 test("Search for the available employee", async({page})=>{
     const loginPage = new LoginPage(page);
     const employeePage = new EmployeePage(page);
-    const searchedName = 'Peter Mac Anderson';
+    const searchedName = testData.searchEmployee;
 
     await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+    await loginPage.login(testData.validLogin.username, testData.validLogin.password);
     await employeePage.goToEmployeeList();
     await employeePage.searchEmployee(searchedName);
     await expect(page.getByText('Peter Mac')).toBeVisible({timeout: 15000});
@@ -37,10 +38,10 @@ test("Search for the available employee", async({page})=>{
 test("View employee detail page", async({page})=>{
     const loginPage = new LoginPage(page);
     const employeePage = new EmployeePage(page);
-    const searchedName = 'Peter Mac Anderson';
+    const searchedName = testData.searchEmployee;
 
     await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+    await loginPage.login(testData.validLogin.username, testData.validLogin.password);
     await employeePage.goToEmployeeList();
     await employeePage.searchEmployee(searchedName);
     await employeePage.openEmployeeDetails();
@@ -54,11 +55,11 @@ test("View employee detail page", async({page})=>{
 test("Add new employee successfully", async({page})=>{
     const loginPage = new LoginPage(page);
     const employeePage = new EmployeePage(page);
-    const firstName = 'pratham'; 
-    const lastName = 'karki';
+    const firstName = testData.newEmployee.firstName; 
+    const lastName = testData.newEmployee.lastName;
 
     await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+    await loginPage.login(testData.validLogin.username, testData.validLogin.password);
     await expect(page).toHaveURL(/dashboard/, { timeout: 15000 });  
     await employeePage.goToEmployeeList();
 
