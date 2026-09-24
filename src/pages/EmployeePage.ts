@@ -19,6 +19,10 @@ export class EmployeePage{
         await this.pimLink.click();
     }
 
+    async openEmployeeDetails(){
+        await this.page.getByText('Peter Mac').click();
+    }
+
      async searchEmployee(employeeName: string){
         await this.employeeInfoSection.click();
         await this.employeeNameInput.fill(employeeName);

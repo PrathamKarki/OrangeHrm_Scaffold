@@ -30,3 +30,21 @@ test("Search for the available employee", async({page})=>{
 
 
 })
+
+
+// test scenario: View the employee detail page
+
+test("View employee detail page", async({page})=>{
+    const loginPage = new LoginPage(page);
+    const employeePage = new EmployeePage(page);
+    const searchedName = 'Peter Mac Anderson';
+
+    await loginPage.goto();
+    await loginPage.login('Admin', 'admin123');
+    await employeePage.goToEmployeeList();
+    await employeePage.searchEmployee(searchedName);
+    await employeePage.openEmployeeDetails();
+
+    await expect(page.getByRole('heading', {name: 'Personal Details'})).toBeVisible({timeout: 15000});
+    
+})
