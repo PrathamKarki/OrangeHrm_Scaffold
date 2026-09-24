@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
 import { LoginPage } from '../src/pages/LoginPage';
-import { DashboardPage } from '../src/pages/DashboradPage';
+import { DashboardPage } from '../src/pages/DashboardPage';
 import { testData } from '../src/utils/testData';
 
 // test scenarion 1: Login with valid credentails
