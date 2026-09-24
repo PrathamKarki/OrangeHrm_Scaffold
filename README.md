@@ -27,7 +27,7 @@ OrangeHrm_Scaffold/
 ├── package.json
 ├── tsconfig.json
 └── .gitignore
-
+```
 
 ## Installation
 1. Clone this repository
