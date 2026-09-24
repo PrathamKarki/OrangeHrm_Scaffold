@@ -9,7 +9,7 @@ test("Apply leave shows message when no leave balance available ", async({page})
     const leavePage = new LeavePage(page);
 
     await loginPage.goto();
-    await loginPage.login(testData.validLogin.username, testData.validLogin.username);
+    await loginPage.login(testData.validLogin.username, testData.validLogin.password);
     await expect(page).toHaveURL(/dashboard/, {timeout: 15000});
     await leavePage.goToLeave();
     await leavePage.goToApply();
