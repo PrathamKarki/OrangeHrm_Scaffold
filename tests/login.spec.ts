@@ -1,13 +1,14 @@
 import {test, expect} from '@playwright/test';
 import { LoginPage } from '../src/pages/LoginPage';
-import { Dashboard } from '../src/pages/Dashborad';
+import { DashboardPage } from '../src/pages/DashboradPage';
+import { testData } from '../src/utils/testData';
 
 // test scenarion 1: Login with valid credentails
 test("Successful login with valid credentials", async({page})=>{
    const loginPage = new LoginPage(page);
 
     await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+    await loginPage.login(testData.validLogin.username, testData.validLogin.password);
 
     await expect(page).toHaveURL(/dashboard/, {timeout: 15000});
 })
@@ -17,7 +18,7 @@ test("Successful login with valid credentials", async({page})=>{
 test("Login with invalid credentials", async({page})=>{
    const invalidLogin = new LoginPage(page);
    await invalidLogin.goto();
-   await invalidLogin.login('WrongUser', 'WrongPassword');
+   await invalidLogin.login(testData.invalidLogin.username, testData.invalidLogin.password);
 
    await expect(page.getByText('Invalid credentials')).toBeVisible({timeout: 15000});
    
@@ -38,9 +39,9 @@ test("Login with empty field", async({page})=>{
 test("logout redirects to the login page", async({page})=>{
 
     const loginPage = new LoginPage(page);
-    const dashboardpage = new Dashboard(page);
+    const dashboardpage = new DashboardPage(page);
     await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+    await loginPage.login(testData.validLogin.username, testData.validLogin.password);
     await dashboardpage.logout();
 
     await expect(page).toHaveURL(/login/, {timeout: 15000});
