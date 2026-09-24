@@ -16,6 +16,7 @@ A UI test automationn framework built with Playwright and Typescript, targeting 
 Testing covers Authentication, Employee Management (PIM), and Leave modules.
 
 ## Project Structure
+```text
 OrangeHrm_Scaffold/
 ├── src/
 │   ├── pages/            # Page Object classes 
