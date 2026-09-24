@@ -17,7 +17,7 @@ export class LeavePage{
         await this.leaveLink.click();
     }
 
-    async goToApply(){
-        await this.applyTab.click();
-    }
+   async goToApply(){
+    await this.applyTab.click();
+   }
 }
