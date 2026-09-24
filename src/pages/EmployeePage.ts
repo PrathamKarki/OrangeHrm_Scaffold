@@ -23,9 +23,9 @@ export class EmployeePage{
     }
 
      async searchEmployee(employeeName: string){
-        this.employeeInfoSection.click();
-        this.employeeNameInput.fill(employeeName);
-        this.searchBtn.click();
+        await this.employeeInfoSection.click();
+        await this.employeeNameInput.fill(employeeName);
+        await this.searchBtn.click();
     }
 
 }
