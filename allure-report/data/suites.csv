@@ -1,5 +1,5 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","4966","Login with empty field","chromium","2026-09-24","passed","2026-09-24","","login.spec.ts","",""
-"","7380","Successful login with valid credentials","chromium","2026-09-24","passed","2026-09-24","","login.spec.ts","",""
 "","11525","logout redirects to the login page","chromium","2026-09-24","passed","2026-09-24","","login.spec.ts","",""
 "","6926","Login with invalid credentials","chromium","2026-09-24","passed","2026-09-24","","login.spec.ts","",""
+"","7380","Successful login with valid credentials","chromium","2026-09-24","passed","2026-09-24","","login.spec.ts","",""
+"","4966","Login with empty field","chromium","2026-09-24","passed","2026-09-24","","login.spec.ts","",""

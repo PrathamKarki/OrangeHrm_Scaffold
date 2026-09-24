@@ -73,8 +73,14 @@ npx playwright show-report
 \`\`\`
 
 ## Allure Report
-*(To be added — Allure reporting setup pending)*
+Generate and view the Allure report after running tests:
+\`\`\`
+npx allure-commandline generate allure-results --clean -o allure-report
+npx allure-commandline open allure-report
+\`\`\`
 
+Allure provides a richer, more detailed view of test results compared to the standard 
+Playwright HTML report, including categorized results and historical trends.
 ## Automated Scenarios
 
 ### Authentication
