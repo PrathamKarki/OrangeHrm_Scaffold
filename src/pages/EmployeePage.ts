@@ -47,6 +47,7 @@ export class EmployeePage{
         await this.firstNameInput.fill(firstName);
         await this.middleNameInput.fill(middleName);
         await this.lastNameInput.fill(lastName);
+        await this.page.locator('.oxd-form-loader').waitFor({ state: 'hidden' });
         await this.saveBtn.click();
     }
 
