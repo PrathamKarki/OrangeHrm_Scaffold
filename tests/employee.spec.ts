@@ -48,3 +48,22 @@ test("View employee detail page", async({page})=>{
     await expect(page.getByRole('heading', {name: 'Personal Details'})).toBeVisible({timeout: 15000});
     
 })
+
+
+// test scenario: add new employee successfully
+test("Add new employee successfully", async({page})=>{
+    const loginPage = new LoginPage(page);
+    const employeePage = new EmployeePage(page);
+    const firstName = 'pratham'; 
+    const lastName = 'karki';
+
+    await loginPage.goto();
+    await loginPage.login('Admin', 'admin123');
+    await expect(page).toHaveURL(/dashboard/, { timeout: 15000 });  
+    await employeePage.goToEmployeeList();
+
+    await employeePage.addEmployee();
+    await employeePage.addEmployeeData(firstName, '', lastName);
+
+    await expect(page).toHaveURL(/viewPersonalDetails/, {timeout: 15000})
+})
