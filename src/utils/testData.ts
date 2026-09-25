@@ -1,7 +1,9 @@
+import dotenv from 'dotenv';
+dotenv.config();
 export const testData = {
     validLogin: {
-        username: 'Admin', 
-        password: 'admin123',
+        username: process.env.ADMIN_USERNAME || 'Admin', 
+        password: process.env.ADMIN_PASSWORD || 'admin123',
     },
 
     invalidLogin: {
