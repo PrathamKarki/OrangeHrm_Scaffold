@@ -1,4 +1,4 @@
-import {Page, Locator} from '@playwright/test';
+import {Page, Locator, expect} from '@playwright/test';
 
 export class EmployeePage{
     readonly page: Page;
@@ -16,39 +16,47 @@ export class EmployeePage{
         this.page = page;
         this.pimLink = page.getByRole('link', {name: 'PIM'});
         this.employeeInfoSection = page.getByText('Employee Information');
-        this.employeeNameInput = page.getByPlaceholder('Type for hints...').first();
-        this.searchBtn = page.getByRole('button', {name: 'Search'});
         this.addEmployeeTab = page.getByRole('button', {name: 'Add'});
         this.firstNameInput = page.getByPlaceholder('First Name');
         this.middleNameInput = page.getByPlaceholder('Middle Name');
         this.lastNameInput = page.getByPlaceholder('Last Name');
         this.saveBtn = page.getByRole('button', {name: 'Save'});
+        this.employeeNameInput = page.getByPlaceholder('Type for hints...').first();
+        this.searchBtn = page.getByRole('button', {name: 'Search'});
+
     }
 
       async goToEmployeeList () {
         await this.pimLink.click();
     }
 
-    async openEmployeeDetails(){
-        await this.page.getByText('Peter Mac').click();
-    }
-
-     async searchEmployee(employeeName: string){
-        await this.employeeInfoSection.click();
-        await this.employeeNameInput.fill(employeeName);
-        await this.searchBtn.click();
-    }
-
-    async addEmployee(){
+      async addEmployee(){
         await this.addEmployeeTab.click();
     }
 
-    async addEmployeeData(firstName: string, middleName: string, lastName: string){
+      async addEmployeeData(firstName: string, middleName: string, lastName: string){
         await this.firstNameInput.fill(firstName);
         await this.middleNameInput.fill(middleName);
         await this.lastNameInput.fill(lastName);
         await this.page.locator('.oxd-form-loader').waitFor({ state: 'hidden' });
         await this.saveBtn.click();
     }
+
+
+      async searchEmployee(employeeName: string){
+        await this.employeeInfoSection.click();
+        await this.employeeNameInput.fill(employeeName);
+        await this.searchBtn.click();
+    }
+
+
+    async openEmployeeDetails(lastName: string){
+        const row = this.page.getByRole('row').filter({ hasText: lastName})
+        await expect(row).toBeVisible();
+        await row.click();
+    }
+
+
+
 
 }

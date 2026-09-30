@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
+
+const uniqueLastName = `Karki${Date.now()}`
 export const testData = {
     validLogin: {
         username: process.env.ADMIN_USERNAME || 'Admin', 
@@ -11,10 +13,11 @@ export const testData = {
         password: 'WrongPassword',
     },
 
-    searchEmployee: 'Peter Mac Anderson',
     newEmployee: {
         firstName: 'Pratham', 
         middleName: '',
-        lastName: 'Karki',
+        lastName: uniqueLastName,
     },
+
+       searchEmployee: `Pratham ${uniqueLastName}`,
 };
