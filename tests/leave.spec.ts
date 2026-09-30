@@ -3,7 +3,7 @@ import {test, expect} from '../src/fixtures/authFixture';
 import { LeavePage } from '../src/pages/LeavePage';
 
 
-//test scenario: 
+//test scenario: apply leave page loads with leave type options
 test("Apply leave page loads with leave type options ", async({loggedInPage})=>{
     const leavePage = new LeavePage(loggedInPage);
 
